@@ -4,10 +4,10 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 19:49:38
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-05 23:28:52
+ * @LastEditTime: 2020-05-06 00:38:40
  */
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, Menu} = require('electron')
 
 function createWindow() {
     // Create the browser window.
@@ -28,14 +28,31 @@ function createWindow() {
             label: "Tikz-tool",
             submenu: [
                 {
-                    label: "Quit",
-                    accelerator: "CmdOrCtrl+Q",
-                    role: "quit"
-                },
-                {
                     label: "Reload",
                     accelerator: "CmdOrCtrl+R",
                     role: "reload"
+                },
+                {
+                    label: "Quit",
+                    accelerator: "CmdOrCtrl+Q",
+                    role: "quit"
+                }
+            ]
+        },
+        {
+            label: "File",
+            submenu: [
+                {
+                    label: "Save as PNG",
+                    click() {
+                        mainWindow.webContents.send('action', 'savePNG');
+                    }
+                },
+                {
+                    label: "Save as SVG",
+                    click() {
+                        mainWindow.webContents.send('action', 'saveSVG');
+                    }
                 }
             ]
         // },
