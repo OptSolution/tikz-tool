@@ -4,11 +4,10 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 21:53:06
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-05 22:29:37
+ * @LastEditTime: 2020-05-05 23:00:30
  */
 
 const fs = require('fs');
-const code_input = document.getElementById('code');
 const output = document.getElementById('draw');
 
 function update() {

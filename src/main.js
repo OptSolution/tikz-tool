@@ -4,7 +4,7 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 19:49:38
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-05 22:05:58
+ * @LastEditTime: 2020-05-05 23:28:52
  */
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, Menu } = require('electron')
@@ -31,6 +31,11 @@ function createWindow() {
                     label: "Quit",
                     accelerator: "CmdOrCtrl+Q",
                     role: "quit"
+                },
+                {
+                    label: "Reload",
+                    accelerator: "CmdOrCtrl+R",
+                    role: "reload"
                 }
             ]
         // },
