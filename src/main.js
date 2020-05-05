@@ -4,7 +4,7 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 19:49:38
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-05 20:39:37
+ * @LastEditTime: 2020-05-05 22:05:58
  */
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, Menu } = require('electron')

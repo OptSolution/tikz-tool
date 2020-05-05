@@ -4,7 +4,7 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 20:20:00
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-05 21:37:34
+ * @LastEditTime: 2020-05-05 22:29:45
  -->
 
 <!DOCTYPE html>
@@ -13,22 +13,11 @@
 <head>
     <meta charset="UTF-8">
     <script src="./src/tikzjax.js"></script>
+    <script src="./src/renderer.js" defer></script>
 </head>
 
 <body>
-    <script type="text/tikz">
-        \begin{tikzpicture}
-            \draw[fill=red!10] (0,6) -- (0,0) -- (2,4) -- cycle;
-            \draw[fill=blue!10] (5,0) -- (10,1) -- (10,3) -- cycle;
-            \draw[fill=yellow!10] (3,6) -- (3,5) -- (6,1) -- (6,2) 
-                -- cycle;
-            \draw[fill=green!10] (7,6) -- (12,6) -- (10,4) -- (5,4) 
-                -- cycle;
-            \draw[fill=orange!10] (12,4) -- (11,0) -- (12,0) -- cycle;
-            \draw[color=gray, style=dotted] (0,0) 
-                grid[xstep=1cm, ystep=1cm] (12cm,6cm);
-        \end{tikzpicture}
-      </script>
+    <div id="draw"></div>
 </body>
 
 </html>
