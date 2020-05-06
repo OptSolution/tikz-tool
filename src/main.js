@@ -4,7 +4,7 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 19:49:38
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-06 12:55:04
+ * @LastEditTime: 2020-05-06 14:09:44
  */
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, Menu} = require('electron')
@@ -55,18 +55,18 @@ function createWindow() {
                     }
                 }
             ]
-        },
-        {
-            label: "Help",
-            submenu: [
-                {
-                    label: 'Devtool',
-                    accelerator: 'CmdOrCtrl+D',
-                    click() {
-                        mainWindow.webContents.openDevTools();
-                    }
-                }
-            ]
+        // },
+        // {
+        //     label: "Help",
+        //     submenu: [
+        //         {
+        //             label: 'Devtool',
+        //             accelerator: 'CmdOrCtrl+D',
+        //             click() {
+        //                 mainWindow.webContents.openDevTools();
+        //             }
+        //         }
+        //     ]
         }
     ];
     const menu = Menu.buildFromTemplate(mainMenuTemplate);
