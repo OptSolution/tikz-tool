@@ -4,7 +4,7 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 21:53:06
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-06 19:24:38
+ * @LastEditTime: 2020-05-06 19:37:18
  */
 const { ipcRenderer, remote } = require('electron');
 const fs = require('fs');
@@ -12,14 +12,32 @@ const { saveSvgAsPng, saveSvg } = require('save-svg-as-png');
 
 const windowMenuTemplate = [
   {
+    label: "Refresh",
+    click() {
+      update();
+    }
+  },
+  {
+    type: 'separator'
+  },
+  {
+    label: "Load tex File",
+    click() {
+      openFile();
+    }
+  },
+  {
+    type: 'separator'
+  },
+  {
     label: 'Save as PNG',
-    click: function () {
+    click() {
       savePNG();
     }
   },
   {
     label: 'Save as SVG',
-    click: function () {
+    click() {
       saveSVG();
     }
   }
@@ -44,6 +62,9 @@ ipcRenderer.on('action', (event, arg) => {
       break;
     case 'openFile':
       openFile();
+      break;
+    case 'refresh':
+      update();
       break;
   }
 });
