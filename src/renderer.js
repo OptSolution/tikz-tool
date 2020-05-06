@@ -4,16 +4,16 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 21:53:06
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-06 00:38:30
+ * @LastEditTime: 2020-05-06 13:12:51
  */
 const { ipcRenderer, remote } = require('electron');
+const fs = require('fs');
+const { saveAs } = require('file-saver');
 
 let pngFile = null;
 let svgFile = null;
 
-const fs = require('fs');
 const output = document.getElementById('draw');
-
 update();
 
 //监听与主进程的通信
@@ -60,20 +60,10 @@ function savePNG() {
 }
 
 function saveSVG() {
-  if (!svgFile) {
-    remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
-      filters: [
-        { name: "SVG Files", extensions: ['svg'] },
-        { name: 'All Files', extensions: ['*'] }]
-    }).then(result => {
-      if (!result.canceled) {
-        svgFile = result.filePath;
-        alert("Saved SVG file to " + svgFile);
-      }
-    }).catch(err => {
-      console.log(err);
-    });
-  } else {
-    alert("Saved SVG file to " + svgFile);
-  }
-}
+  let svg_el = document.getElementsByTagName("svg")[0];
+  // svg_el.setAttribute("version", "1.1");
+  // svg_el.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  var full_svg = svg_el.outerHTML;
+  var blob = new Blob([full_svg], { type: "image/svg+xml" });
+  saveAs(blob, "tikz.svg");
+};

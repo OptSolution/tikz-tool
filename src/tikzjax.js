@@ -21946,6 +21946,8 @@
       svg[0].setAttribute("width", machine.paperwidth.toString() + "pt");
       svg[0].setAttribute("height", machine.paperheight.toString() + "pt");
       svg[0].setAttribute("viewBox", `-72 -72 ${machine.paperwidth} ${machine.paperheight}`);
+      svg[0].setAttribute("version", "1.1");
+      svg[0].setAttribute("xmlns", "http://www.w3.org/2000/svg");
       elt.parentNode.replaceChild(div, elt);
     }
     
