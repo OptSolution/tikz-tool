@@ -4,7 +4,7 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 19:49:38
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-06 14:09:44
+ * @LastEditTime: 2020-05-06 17:51:51
  */
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, Menu} = require('electron')
@@ -43,6 +43,15 @@ function createWindow() {
             label: "File",
             submenu: [
                 {
+                    label: "Load tex File",
+                    click() {
+                        mainWindow.webContents.send('action', 'openFile');
+                    }
+                },
+                {
+                    type: 'separator'
+                },
+                {
                     label: "Save as PNG",
                     click() {
                         mainWindow.webContents.send('action', 'savePNG');
@@ -55,18 +64,18 @@ function createWindow() {
                     }
                 }
             ]
-        // },
-        // {
-        //     label: "Help",
-        //     submenu: [
-        //         {
-        //             label: 'Devtool',
-        //             accelerator: 'CmdOrCtrl+D',
-        //             click() {
-        //                 mainWindow.webContents.openDevTools();
-        //             }
-        //         }
-        //     ]
+        },
+        {
+            label: "Help",
+            submenu: [
+                {
+                    label: 'Devtool',
+                    accelerator: 'CmdOrCtrl+D',
+                    click() {
+                        mainWindow.webContents.openDevTools();
+                    }
+                }
+            ]
         }
     ];
     const menu = Menu.buildFromTemplate(mainMenuTemplate);

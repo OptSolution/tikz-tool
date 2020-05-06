@@ -4,7 +4,7 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 21:53:06
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-06 14:20:29
+ * @LastEditTime: 2020-05-06 18:56:01
  */
 const { ipcRenderer, remote } = require('electron');
 const fs = require('fs');
@@ -30,8 +30,9 @@ window.addEventListener('contextmenu', (e) => {
   windowMenu.popup(remote.getCurrentWindow());
 });
 
-const output = document.getElementById('draw');
-update();
+var output = document.getElementById('draw');
+var texFile = null;
+// update();
 
 //监听与主进程的通信
 ipcRenderer.on('action', (event, arg) => {
@@ -42,19 +43,51 @@ ipcRenderer.on('action', (event, arg) => {
     case 'saveSVG':
       saveSVG();
       break;
+    case 'openFile':
+      openFile();
+      break;
   }
 });
 
-function update() {
+function openFile() {
+  remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
+    filters: [
+      { name: "Text Files", extensions: ['tex'] },
+      { name: 'All Files', extensions: ['*'] }],
+    properties: ['openFile']
+  }).then(result => {
+    if (!result.canceled) {
+      texFile = result.filePaths[0].toString();
+      update();
+    }
+  }).catch(err => {
+    console.log(err);
+  });
+}
+
+async function addTexDom() {
   const s = document.createElement('script');
   s.setAttribute('type', 'text/tikz');
-  fs.readFile('./draw.tex', (err, data) => {
+  fs.readFile(texFile, (err, data) => {
     if (err) throw err;
-
-    s.textContent = data.toString();
+    let text = document.createTextNode(data.toString());
+    s.appendChild(text);
+    // s.textContent = data.toString();
+    alert(text.nodeValue);
+    alert(s.childNodes[0].nodeValue);
   })
   output.innerHTML = '';
   output.appendChild(s);
+}
+
+async function update() {
+  await addTexDom();
+  var scripts = document.getElementsByTagName('script');
+  var tikzScripts = Array.prototype.slice.call(scripts).filter(e => e.getAttribute('type') === 'text/tikz');
+  tikzScripts.reduce(async (promise, element) => {
+    await promise;
+    return process_tikz(element);
+  }, Promise.resolve());
 }
 
 function savePNG() {
