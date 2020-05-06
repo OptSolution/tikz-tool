@@ -4,11 +4,31 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 21:53:06
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-06 14:07:42
+ * @LastEditTime: 2020-05-06 14:20:29
  */
 const { ipcRenderer, remote } = require('electron');
 const fs = require('fs');
 const { saveSvgAsPng, saveSvg } = require('save-svg-as-png');
+
+const windowMenuTemplate = [
+  {
+    label: 'Save as PNG',
+    click: function () {
+      savePNG();
+    }
+  },
+  {
+    label: 'Save as SVG',
+    click: function () {
+      saveSVG();
+    }
+  }
+];
+const windowMenu = remote.Menu.buildFromTemplate(windowMenuTemplate);
+window.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+  windowMenu.popup(remote.getCurrentWindow());
+});
 
 const output = document.getElementById('draw');
 update();
