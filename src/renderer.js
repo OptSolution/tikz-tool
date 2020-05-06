@@ -4,7 +4,7 @@
  * @Email: mr_cwang@foxmail.com
  * @Date: 2020-05-05 21:53:06
  * @LastEditors: Chen Wang
- * @LastEditTime: 2020-05-06 19:37:18
+ * @LastEditTime: 2020-05-06 20:20:29
  */
 const { ipcRenderer, remote } = require('electron');
 const fs = require('fs');
@@ -104,3 +104,24 @@ function savePNG() {
 function saveSVG() {
   saveSvg(document.getElementsByTagName("svg")[0], 'tikz.svg', { left: -72, top: -72 })
 };
+
+
+window.ondragstart = (event) => {
+  event.preventDefault();
+}
+
+window.ondragover = (event) => {
+  event.preventDefault();
+}
+
+window.ondrop = (event) => {
+  let path = event.dataTransfer.files[0].path;
+  let index = path.lastIndexOf(".");
+  let ext = path.substr(index + 1);
+  if (ext === 'tex') {
+    texFile = path
+    update();
+  } else {
+    alert("Need a .tex file");
+  }
+}
