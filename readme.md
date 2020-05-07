@@ -27,6 +27,9 @@ You can draw the graph in any `.tex` file, then load it, the tool surpport drap 
 - Maybe you need some time to download resource when you run the tool at the first time.
 - Not all Tikz commands are available, recommended for temporary use only
 
+## Related
+Maybe [ktikz](http://www.hackenberger.at/blog/ktikz-editor-for-the-tikz-language/) is better for you
+
 ## Screenshot
 ![window](./screenshot/window.png)
 ![rightclick](screenshot/rightclick.png)
