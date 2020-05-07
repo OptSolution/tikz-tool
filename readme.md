@@ -25,7 +25,7 @@ You can draw the graph in any `.tex` file, then load it, the tool surpport drap 
 
 ## Note     
 - Maybe you need some time to download resource when you run the tool at the first time.
-- There are many latex tikz features are not surpport
+- Not all Tikz commands are available, recommended for temporary use only
 
 ## Screenshot
 ![window](./screenshot/window.png)
