@@ -9,7 +9,7 @@
   "author": "Chen Wang",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^8.2.5",
+    "electron": "^8.5.1",
     "save-svg-as-png": "^1.4.17"
   }
 }
